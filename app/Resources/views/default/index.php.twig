@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>
+{% if username is empty %}
+    Welcome!
+{% else %}
+    Welcome, {{ username | capitalize }}!
+{% endif %}
+    <small>This is demo Symfony 3 project.</small>
+</h1>
+{% endblock %}

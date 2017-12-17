@@ -8,9 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Site controller.
  *
+ * @see https://symfony.com/doc/3.4/routing.html
+ *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class SiteController
+class HelloController
 {
     /**
      * Say's hello to anyone.

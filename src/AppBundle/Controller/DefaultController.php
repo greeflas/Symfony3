@@ -9,6 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Default application controller.
  *
+ * @see https://symfony.com/doc/3.4/controller.html
+ *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class DefaultController extends Controller

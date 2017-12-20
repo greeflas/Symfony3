@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -29,13 +30,21 @@ class HelloController
     /**
      * Say's hello to the concrete user.
      *
+     * @param SessionInterface $session
      * @param string $username
      * @return Response
      *
-     * @Route("/hello/{username}")
+     * @Route("/hello/to/{username}")
      */
-    public function helloUserAction(string $username = 'Guest') : Response
+    public function helloUserAction(SessionInterface $session, string $username = 'Guest') : Response
     {
+        $hasName = $session->has('username');
+        if (!$hasName && $username !== 'Guest') {
+            $session->set('username', $username);
+        } elseif ($hasName && $username === 'Guest') {
+            $username = $session->get('username');
+        }
+
         return new Response('Hello, ' . $username . '!');
     }
 }

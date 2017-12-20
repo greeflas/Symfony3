@@ -16,6 +16,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller
 {
     /**
+     * Example of 404 error page.
+     *
+     * @return void
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
+     * @Route("/error")
+     */
+    public function errorAction()
+    {
+        throw $this->createNotFoundException('Example of 404 exception');
+    }
+
+    /**
      * Redirect to external resource.
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

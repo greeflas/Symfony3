@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -11,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
  * 
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-class ApiController
+class ApiController extends Controller
 {
     /**
      * Returns "todo list".
@@ -30,5 +31,21 @@ class ApiController
         ];
 
         return new JsonResponse($todoList);
+    }
+
+    /**
+     * Returns "done list".
+     *
+     * @return JsonResponse
+     *
+     * @Route("/api/done-list")
+     * @Method("GET")
+     */
+    public function getDoneList() : JsonResponse
+    {
+        return $this->json([
+            '1. Learn Routing',
+            '2. Learn Controllers',
+        ]);
     }
 }

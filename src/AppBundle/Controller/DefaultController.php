@@ -16,12 +16,36 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller
 {
     /**
+     * Redirect to external resource.
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Route("/official-repo")
+     */
+    public function officialRepoAction()
+    {
+        return $this->redirect('https://github.com/greeflas/Symfony3');
+    }
+
+    /**
+     * Example of 302 redirect.
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Route("/some-page-old")
+     */
+    public function somePageOldAction()
+    {
+       return $this->redirectToRoute('some_page', [], 301);
+    }
+
+    /**
      * Routing example.
      * @see \Symfony\Component\Routing\Generator\UrlGeneratorInterface
      *
      * @return Response
      *
-     * @Route("/some-page")
+     * @Route("/some-page", name="some_page")
      */
     public function somePageAction()
     {

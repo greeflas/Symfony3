@@ -4,9 +4,17 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+/**
+ * Application kernel.
+ */
 class AppKernel extends Kernel
 {
-    public function registerBundles()
+    /**
+     * Register bundles.
+     *
+     * @return \Symfony\Component\HttpKernel\Bundle\BundleInterface[]
+     */
+    public function registerBundles() : array
     {
         $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
@@ -33,26 +41,52 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
-    public function getRootDir()
+    /**
+     * Returns application root dir.
+     *
+     * @return string
+     */
+    public function getRootDir() : string
     {
         return __DIR__;
     }
 
-    public function getImagesDir()
+    /**
+     * Returns images root dir.
+     *
+     * @return string
+     */
+    public function getImagesDir() : string
     {
         return __DIR__ . '/Resources/img';
     }
 
-    public function getCacheDir()
+    /**
+     * Returns cache root dir.
+     *
+     * @return string
+     */
+    public function getCacheDir() : string
     {
         return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
-    public function getLogDir()
+    /**
+     * Returns logs root dir.
+     *
+     * @return string
+     */
+    public function getLogDir() : string
     {
         return dirname(__DIR__).'/var/logs';
     }
 
+    /**
+     * Register configuration for container.
+     *
+     * @param LoaderInterface $loader
+     * @throws Exception
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(function (ContainerBuilder $container) {

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,7 +24,7 @@ class DefaultController extends Controller
      *
      * @Route("/error")
      */
-    public function errorAction()
+    public function errorAction() : void
     {
         throw $this->createNotFoundException('Example of 404 exception');
     }
@@ -31,11 +32,11 @@ class DefaultController extends Controller
     /**
      * Redirect to external resource.
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      *
      * @Route("/official-repo")
      */
-    public function officialRepoAction()
+    public function officialRepoAction() : RedirectResponse
     {
         return $this->redirect('https://github.com/greeflas/Symfony3');
     }
@@ -47,7 +48,7 @@ class DefaultController extends Controller
      *
      * @Route("/some-page-old")
      */
-    public function somePageOldAction()
+    public function somePageOldAction() : RedirectResponse
     {
        return $this->redirectToRoute('some_page', [], 301);
     }
@@ -60,7 +61,7 @@ class DefaultController extends Controller
      *
      * @Route("/some-page", name="some_page")
      */
-    public function somePageAction()
+    public function somePageAction() : Response
     {
         $homePageUrl = $this->generateUrl('home_page');
         return $this->render('default/some-page.php.twig', compact('homePageUrl'));

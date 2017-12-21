@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -30,11 +31,11 @@ class SecretController extends Controller
     /**
      * Show secret message.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/secret/show", name="secret_show")
      */
-    public function showAction()
+    public function showAction() : Response
     {
         return $this->render('secret/show.php.twig');
     }

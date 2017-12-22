@@ -17,6 +17,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller
 {
     /**
+     * Show admin email address.
+     *
+     * @return Response
+     *
+     * @Route("/admin-email")
+     */
+    public function showAdminEmail()
+    {
+        return new Response($this->container->getParameter('admin_email'));
+    }
+
+    /**
      * Example of 404 error page.
      *
      * @return void

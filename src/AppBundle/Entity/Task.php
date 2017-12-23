@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * This is task model class.
  *
@@ -11,17 +13,23 @@ class Task
 {
     /**
      * @var string
+     *
+     * @Assert\NotBlank()
      */
     protected $task;
+
     /**
      * @var \DateTime
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type("\DateTime")
      */
     protected $dueDate;
 
     /**
      * @return string
      */
-    public function getTask() : string
+    public function getTask()
     {
         return $this->task;
     }
@@ -29,7 +37,7 @@ class Task
     /**
      * @param string $task
      */
-    public function setTask(string $task)
+    public function setTask($task)
     {
         $this->task = $task;
     }
@@ -37,7 +45,7 @@ class Task
     /**
      * @return \DateTime
      */
-    public function getDueDate() : \DateTime
+    public function getDueDate()
     {
         return $this->dueDate;
     }

@@ -34,8 +34,13 @@ class TaskController extends Controller
         $task->setDueDate(new \DateTime());
 
         $form = $this->createFormBuilder($task)
-            ->add('task', TextareaType::class)
-            ->add('dueDate', DateType::class)
+            ->add('task', TextareaType::class, [
+                'required' => false,
+                'label' => 'Task description',
+            ])
+            ->add('dueDate', DateType::class, [
+                'required' => false,
+            ])
             ->add('save', SubmitType::class, ['label' => 'Create task'])
             ->getForm();
 

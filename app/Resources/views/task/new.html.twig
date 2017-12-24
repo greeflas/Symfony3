@@ -12,6 +12,14 @@
 </div>
 <hr>
 <div>
+    <label>
+        {{ form_widget(form.done) }}
+        {{ form_label(form.done, 'Is done') }}
+    </label>
+    <span>{{ form_errors(form.done) }}</span>
+</div>
+<hr>
+<div>
     <p>
         {{ form_widget(form.save) }}
     </p>

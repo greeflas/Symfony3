@@ -27,6 +27,13 @@ class Task
     protected $dueDate;
 
     /**
+     * @var bool
+     *
+     * @Assert\Type("boolean")
+     */
+    protected $done;
+
+    /**
      * @return string
      */
     public function getTask()
@@ -56,5 +63,24 @@ class Task
     public function setDueDate(\DateTime $dueDate = null)
     {
         $this->dueDate = $dueDate;
+    }
+
+    /**
+     * Using "isser" instead of "getter".
+     * Also you can use "hasser".
+     *
+     * @return bool
+     */
+    public function isDone()
+    {
+        return $this->done;
+    }
+
+    /**
+     * @param bool $done
+     */
+    public function setDone($done = false)
+    {
+        $this->done = $done;
     }
 }

@@ -26,14 +26,12 @@ class TaskType extends AbstractType
                 'required' => false,
                 'label' => 'Task description',
             ])
-            ->add('dueDate', null, [
-                'required' => false,
-            ])
+            ->add('dueDate', null, ['required' => false])
             ->add('save', SubmitType::class, ['label' => 'Create task']);
     }
 
     /**
-     * {@inheritdoc}
+     * {@in}
      */
     public function configureOptions(OptionsResolver $resolver)
     {

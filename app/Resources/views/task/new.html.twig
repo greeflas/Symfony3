@@ -1,3 +1,19 @@
 {{ form_start(form) }}
-{{ form_widget(form) }}
+<div>
+    <p>{{ form_label(form.task) }}</p>
+    {{ form_widget(form.task) }}
+    <span>{{ form_errors(form.task) }}</span>
+</div>
+<hr>
+<div>
+    <p>{{ form_label(form.dueDate, 'Due date for task') }}</p>
+    {{ form_widget(form.dueDate) }}
+    <span>{{ form_errors(form.dueDate) }}</span>
+</div>
+<hr>
+<div>
+    <p>
+        {{ form_widget(form.save) }}
+    </p>
+</div>
 {{ form_end(form) }}

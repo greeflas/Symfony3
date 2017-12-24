@@ -3,10 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Task;
+use AppBundle\Form\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,16 +31,7 @@ class TaskController extends Controller
         $task->setTask('Learn forms in Symfony 3');
         $task->setDueDate(new \DateTime());
 
-        $form = $this->createFormBuilder($task)
-            ->add('task', TextareaType::class, [
-                'required' => false,
-                'label' => 'Task description',
-            ])
-            ->add('dueDate', DateType::class, [
-                'required' => false,
-            ])
-            ->add('save', SubmitType::class, ['label' => 'Create task'])
-            ->getForm();
+        $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

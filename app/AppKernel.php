@@ -62,6 +62,16 @@ class AppKernel extends Kernel
     }
 
     /**
+     * Returns uploads root dir.
+     *
+     * @return string
+     */
+    public function getUploadsDir() : string
+    {
+        return __DIR__ . '/Resources/uploads';
+    }
+
+    /**
      * Returns cache root dir.
      *
      * @return string

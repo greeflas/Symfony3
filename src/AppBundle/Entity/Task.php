@@ -16,7 +16,7 @@ class Task
      *
      * @Assert\NotBlank()
      */
-    protected $task;
+    private $task;
 
     /**
      * @var \DateTime
@@ -24,14 +24,14 @@ class Task
      * @Assert\NotBlank()
      * @Assert\Type("\DateTime")
      */
-    protected $dueDate;
+    private $dueDate;
 
     /**
      * @var bool
      *
      * @Assert\Type("boolean")
      */
-    protected $done;
+    private $done;
 
     /**
      * @return string

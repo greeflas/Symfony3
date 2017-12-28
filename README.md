@@ -28,4 +28,19 @@ Installation
     
     `$ docker stop symfony-demo` - stop web server
 
-    
+Doctrine
+--------
+
+### CLI
+
+`$ ./bin/console doctrine:database:create` - creates DB from config
+
+`$ ./bin/console doctrine:generate:entity` - generate entity class
+
+`$ ./bin/console doctrine:schema:validate` - validate entity class and DB schema
+
+`$ ./bin/console doctrine:schema:update` - update DB schema
+
+> `--dump-sql` - output SQL to console
+
+> `--force` - update DB schema

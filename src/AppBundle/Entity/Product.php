@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Product entity.
+ * @see https://symfony.com/doc/3.4/doctrine.html#add-mapping-information
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  *
@@ -50,14 +51,6 @@ class Product
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**

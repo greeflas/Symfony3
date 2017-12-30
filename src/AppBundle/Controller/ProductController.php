@@ -56,4 +56,30 @@ class ProductController extends Controller
 
         return $this->render('product/view.html.twig', compact('product'));
     }
+
+    /**
+     * Find product by price or name.
+     *
+     * @param mixed $query
+     * @return Response
+     *
+     * @Route("/product/smart-search/{query}")
+     */
+    public function smartSearchAction($query)
+    {
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $product = null;
+
+        if (floatval($query) !== 0) {
+            $product = $repository->findOneByPrice($query);
+        } else {
+            $product = $repository->findOneByName($query);
+        }
+
+        if (!$product) {
+            throw $this->createNotFoundException('Product not found!');
+        }
+
+        return $this->render('product/view.html.twig', compact('product'));
+    }
 }

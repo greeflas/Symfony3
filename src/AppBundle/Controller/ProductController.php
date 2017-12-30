@@ -42,7 +42,7 @@ class ProductController extends Controller
      * @param int $productId
      * @return Response
      *
-     * @Route("/product/view/{productId}")
+     * @Route("/product/view/{productId}", name="product_view")
      */
     public function viewAction($productId)
     {
@@ -81,5 +81,28 @@ class ProductController extends Controller
         }
 
         return $this->render('product/view.html.twig', compact('product'));
+    }
+
+    /**
+     * Update product.
+     *
+     * @param int $productId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Route("/product/update/{productId}")
+     */
+    public function updateAction($productId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository(Product::class)->find($productId);
+
+        if (!$product) {
+            throw $this->createNotFoundException(sprintf('Product with ID %d not found', $productId));
+        }
+
+        $product->setPrice(10000);
+        $em->flush();
+
+        return $this->redirectToRoute('product_view', compact('productId'));
     }
 }

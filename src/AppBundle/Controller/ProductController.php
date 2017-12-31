@@ -105,4 +105,27 @@ class ProductController extends Controller
 
         return $this->redirectToRoute('product_view', compact('productId'));
     }
+
+    /**
+     * Remove product.
+     *
+     * @param int $productId
+     * @return Response
+     *
+     * @Route("/product/remove/{productId}")
+     */
+    public function removeAction($productId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository(Product::class)->find($productId);
+
+        if (!$product) {
+            throw $this->createNotFoundException();
+        }
+
+        $em->remove($product);
+        $em->flush();
+
+        return new Response('Product with ID ' . $productId . ' was successfully removed!');
+    }
 }

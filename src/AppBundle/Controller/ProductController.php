@@ -37,6 +37,22 @@ class ProductController extends Controller
     }
 
     /**
+     * List of the products.
+     *
+     * @return Response
+     *
+     * @Route("/product/list")
+     */
+    public function listAction()
+    {
+        $products = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->findAll();
+
+        return $this->render('product/list.html.twig', compact('products'));
+    }
+
+    /**
      * View product info.
      *
      * @param int $productId

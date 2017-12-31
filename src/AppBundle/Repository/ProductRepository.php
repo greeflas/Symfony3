@@ -6,6 +6,9 @@ use Doctrine\ORM\EntityRepository;
 
 /**
  * Repository for product entity.
+ *
+ * @link https://symfony.com/doc/3.4/doctrine/repository.html
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class ProductRepository extends EntityRepository
 {

@@ -6,8 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Product entity.
- * @see https://symfony.com/doc/3.4/doctrine.html#add-mapping-information
  *
+ * @see https://symfony.com/doc/3.4/doctrine.html#add-mapping-information
+ * @see http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/basic-mapping.html#property-mapping
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  *
  * @ORM\Entity

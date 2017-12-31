@@ -4,14 +4,15 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Product CRUD controller.
- * @link https://symfony.com/doc/3.4/doctrine.html#persisting-objects-to-the-database
  *
+ * @link https://symfony.com/doc/3.4/doctrine.html#persisting-objects-to-the-database
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
 class ProductController extends Controller
@@ -23,7 +24,7 @@ class ProductController extends Controller
      *
      * @Route("/product/create")
      */
-    public function createAction()
+    public function createAction() : Response
     {
         $product = new Product();
         $product->setName('iPhone X');
@@ -43,9 +44,9 @@ class ProductController extends Controller
      * @param Request $request
      * @return Response
      *
-     * @Route("/product/list")
+     * @Route("/product/list", name="product_list")
      */
-    public function listAction(Request $request)
+    public function listAction(Request $request) : Response
     {
         /* @var \AppBundle\Repository\ProductRepository $repository */
         $repository = $this->getDoctrine()->getRepository(Product::class);
@@ -66,7 +67,7 @@ class ProductController extends Controller
      *
      * @Route("/product/view/{productId}", name="product_view")
      */
-    public function viewAction($productId)
+    public function viewAction($productId) : Response
     {
         $product = $this->getDoctrine()
             ->getRepository(Product::class)
@@ -87,7 +88,7 @@ class ProductController extends Controller
      *
      * @Route("/product/smart-search/{query}")
      */
-    public function smartSearchAction($query)
+    public function smartSearchAction($query) : Response
     {
         $repository = $this->getDoctrine()->getRepository(Product::class);
         $product = null;
@@ -109,11 +110,11 @@ class ProductController extends Controller
      * Update product.
      *
      * @param int $productId
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      *
      * @Route("/product/update/{productId}")
      */
-    public function updateAction($productId)
+    public function updateAction($productId) : RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository(Product::class)->find($productId);
@@ -136,7 +137,7 @@ class ProductController extends Controller
      *
      * @Route("/product/remove/{productId}")
      */
-    public function removeAction($productId)
+    public function removeAction($productId) : Response
     {
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository(Product::class)->find($productId);

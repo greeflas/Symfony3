@@ -47,20 +47,13 @@ class ProductController extends Controller
      */
     public function listAction(Request $request)
     {
-        $products = [];
+        /* @var \AppBundle\Repository\ProductRepository $repository */
         $repository = $this->getDoctrine()->getRepository(Product::class);
         $price = $request->query->get('price');
 
-        if (null !== $price) {
-            $products = $repository->createQueryBuilder('p')
-                ->where('p.price < :price')
-                ->setParameter('price', $price)
-                ->orderBy('p.price', 'ASC')
-                ->getQuery()
-                ->getResult();
-        } else {
-            $products = $repository->findAll();
-        }
+        $products = null !== $price
+            ? $repository->findAllPriceLessThen($price)
+            : $repository->findAll();
 
         return $this->render('product/list.html.twig', compact('products'));
     }

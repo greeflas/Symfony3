@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,15 +40,27 @@ class ProductController extends Controller
     /**
      * List of the products.
      *
+     * @param Request $request
      * @return Response
      *
      * @Route("/product/list")
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $products = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->findAll();
+        $products = [];
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $price = $request->query->get('price');
+
+        if (null !== $price) {
+            $products = $repository->createQueryBuilder('p')
+                ->where('p.price < :price')
+                ->setParameter('price', $price)
+                ->orderBy('p.price', 'ASC')
+                ->getQuery()
+                ->getResult();
+        } else {
+            $products = $repository->findAll();
+        }
 
         return $this->render('product/list.html.twig', compact('products'));
     }
